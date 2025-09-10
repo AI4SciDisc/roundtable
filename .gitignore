@@ -205,3 +205,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Ignore all CSV files
+*.csv
+
+# Ignore all JSON files
+*.json
+
+# Ignore all Jupyter Notebook files
+*.ipynb
