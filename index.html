@@ -1,201 +1,186 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <title>AI4SciDisc: Roundtable Policy</title>
+
+  <!-- Meta -->
   <meta name="description" content="Roundtable Policy: Compositional Large Language Model Agents Aided Scientific Discovery and Proposal Generation.">
   <meta name="keywords" content="Roundtable Policy, Multi-LLM Agents, Scientific Discovery">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Roundtable Policy</title>
 
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
+
+  <!-- 自定义 CSS -->
+  <style>
+    .image-bar {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 12px;
+      padding: 12px;
+      border-bottom: 2px solid #ccc;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .image-bar::-webkit-scrollbar { height: 8px; }
+    .image-bar::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    .image-bar::-webkit-scrollbar-thumb:hover { background: #555; }
+
+    .image-bar img {
+      width: 300px;   /* 占位图固定大小 */
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+
+    .image-bar img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+  </style>
 </head>
+
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Roundtable Policy</h1>
-          <h2 class="subtitle">Improving Scientific Reasoning and Narratives through Confidence Weighted Consensus of LLMs</h2>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://www.linkedin.com/in/yu-yao-8599b5265/">Yu Yao</a> <sup>1*</sup>,</span>
-            <span class="author-block"><a href="https://www.linkedin.com/in/jiayi-dong-6a2a6b26b/">Jiayi Dong</a> <sup>2*</sup>,</span>
-            <span class="author-block"><a href="https://scholar.google.com/citations?user=SHVhdhoAAAAJ&hl=en">Ju Li</a> <sup>1</sup>,</span>
-            <span class="author-block"><a href="https://scholar.google.com/citations?user=ceCfTvcAAAAJ&hl=en">Yang Yang</a> <sup>2</sup>,</span>
-            <span class="author-block"><a href="https://scholar.google.com/citations?user=GRMMc_MAAAAJ&hl=en">Yilun Du</a> <sup>3</sup>,</span>
-          </div>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup> Massachusetts Institute of Technology,</span>
-            <span class="author-block"><sup>2</sup> University of California, Los Angeles,</span>
-            <span class="author-block"><sup>3</sup> Harvard University</span>
-          </div>
-          <div class="publication-links" style="margin-top: 20px;">
-            <!-- arXiv Link -->
-            <a href="https://arxiv.org/abs/2509.xxxxx" class="button is-dark is-rounded">
-              <span class="icon">
-                <i class="ai ai-arxiv"></i>
-              </span>
-              <span>arXiv</span>
-            </a>
-            <!-- Code Link -->
-            <a href="https://github.com/yuyao-mit/roundtable" class="button is-dark is-rounded">
-              <span class="icon">
-                <i class="fab fa-github"></i>
-              </span>
-              <span>Code</span>
-            </a>
-            <!-- Data Link -->
-            <a href="https://drive.google.com/drive/folders/1zvTSRTo6i2vO5Z3eR-A7CKsp0sIJlPM0?usp=drive_link" class="button is-dark is-rounded">
-              <span class="icon">
-                <i class="fas fa-database"></i>
-              </span>
-              <span>Data</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Video -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/convergence_demo.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Confidence weight table</span> converges after 1000 rounds of games。
-      </h2>
-    </div>
-  </div>
-</section>
+<!-- Author placeholder -->
+<div id="author-placeholder"></div>
+<script>
+  fetch("./static/author.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("author-placeholder").innerHTML = data;
+    });
+</script>
 
 <!-- Abstract -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-           Recent advancements in large language models (LLMs) have demonstrated their
-           exceptional potential across a wide range of scientific applications, including predictive modeling and generative analysis. However, no single LLM excels at all
-           tasks simultaneously—some models are optimized for high-precision numerical
-           predictions, while others specialize in generating coherent, context-rich text. To
-           address this limitation, we introduce ROUNDTABLE POLICY, guided by which
-           a multi-LLM agent framework is designed for scientific discovery and proposal
-           generation. 
-          </p>
-          <p>
-           Central to our approach are two key concepts: the Arbitrator, which
-           serves as an intelligent aggregator, and the confidence weight table, a dynamic
-           mechanism that optimally weights the contributions of different expert models. To
-           evaluate the efficacy of our framework, we benchmarked it against single-model
-           baselines on the task of perovskite solar cell property prediction and decision-
-           making. In this framework, multiple LLMs—each acting as an independent “expert”are trained on the same multimodal dataset and leverage their specialized
-           capabilities to generate diverse outputs. These outputs are then fused through
-           a “roundtable discussion,” where the Arbitrator agent systematically compiles,
-           compares, and integrates each expert’s response. The final answer is refined based
-           on the collective intelligence of all models weighted by confidence weight table. 
-          </p>
-          <p>
-           Unlike conventional LLM pipelines that rely on extensive parameter tuning, our confidence weight table is trainable yet computationally lightweight, enabling
-           rapid adaptation to new tasks while maintaining high performance. Experimental
-           results demonstrate that our ensemble strategy consistently outperforms single-
-           model baselines across both predictive and generative tasks. Furthermore, our
-           approach achieves state-of-the-art performance across multiple input modalities,
-           highlighting its robustness and adaptability in scientific applications. 
+            We present <b>Roundtable Policy</b>, a prompting framework designed to enhance both scientific reasoning and research narratives by capturing consensus among multiple LLM agents. 
+            Our approach is evaluated in two complementary settings: 
+            (1) <i>MultiTask</i>, where heterogeneous scientific questions across domains such as geoscience, biology, mathematics, and materials science are posed simultaneously to emulate the complexity of real-world reasoning; and 
+            (2) <i>SingleTask</i>, where LLMs are required to draft structured scientific proposals given specifications, testing their ability to construct coherent narratives. 
+            To assess performance, we introduce an ensemble-based grading system—the <i>AI Committee</i>—which assigns rubric-specific scores from multiple perspectives. 
+            Central to our method is the <i>confidence-weight table</i>, a matrix that aggregates the committee’s judgments into trust scores for each model. 
+            During inference, this table guides a <i>Fusion Agent</i> that synthesizes player responses into a weighted consensus. 
+            Experiments show that <b>Roundtable Policy</b> improves factual reliability, reasoning consistency, and narrative coherence compared to single-model or naive selection baselines. 
+            Notably, the framework is orthogonal to existing advances such as retrieval augmentation, debate, or prompt engineering, and can be seamlessly applied to any multi-LLM setting. 
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
-  
+  </div>
+</section>
+
+
 <section class="section" id="figures">
   <div class="container is-max-desktop">
     <h2 class="title has-text-centered">Roundtable</h2>
-    <!-- 第一张图片 -->
     <figure class="image" style="margin: 0 auto; max-width: 900px; margin-bottom: 20px;">
-      <!-- 宽度可用 max-width 控制，宽度 100% 可以让图片自适应容器 -->
-      <img src="./figures/general_demo.pdf" 
+      <img src="./figures/general_demo.png" 
            alt="Cover Roundtable" 
            style="width: 100%; display: block; margin: 0 auto;">
-      <!-- 图片描述 -->
-      <!--<figcaption class="has-text-centered" style="margin-top: 8px;">
-        text description: This is the cover roundtable image
-      </figcaption>-->
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
-      </h2>
-    </figure>
-
-    <!-- 第二张图片 -->
-    <figure class="image" style="margin: 0 auto; max-width: 900px;">
-      <img src="./static/images/roundtablechat.png" 
-           alt="Roundtable Chat" 
-           style="width: 100%; display: block; margin: 0 auto;">
-      <!--<figcaption class="has-text-centered" style="margin-top: 8px;">
-        text description: This is the roundtable chat image
-      </figcaption>-->
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        General pipeline of <span class="dnerf">Roundtable Policy</span>.
       </h2>
     </figure>
   </div>
 </section>
-
-<!-- Video -->
-<section class="hero teaser">
+<!-- Benchmark -->
+<section class="section" id="benchmark">
   <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/twoDwn.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Confidence weight table</span> converges after 1000 rounds of games。
-      </h2>
+    <h2 class="title has-text-centered">Benchmark Results</h2>
+
+    <!-- 主表格图 -->
+    <figure class="image" style="margin: 0 auto; max-width: 1000px; margin-bottom: 20px;">
+      <img src="./figures/score_all_table.png" 
+           alt="Benchmark performance of LLMs vs Roundtable Policy" 
+           style="width: 100%; display: block; margin: 0 auto;">
+      <figcaption class="has-text-centered" style="margin-top: 10px;">
+        <p style="text-align: center; font-size: 14px; font-style: italic; max-width: 1000px; margin: 10px auto;">
+          Benchmark performance of individual LLMs versus <b>Roundtable Policy (RP)</b>. 
+          Top: accuracy on nine heterogeneous scientific tasks in the <i>MultiTask</i>. 
+          Bottom: rubric-based scores on scientific proposal writing in the <i>SingleTask</i>. 
+          <span style="color:red;">Red</span> marks the overall best result while 
+          <span style="color:blue;">blue</span> the second best.
+        </p>
+      </figcaption>
+    </figure>
+
+    <!-- 两张并排的小图 -->
+    <div class="columns is-centered" style="margin-top: 30px;">
+      <div class="column is-half has-text-centered">
+        <figure class="image" style="max-width: 100%;">
+          <img src="./figures/gain_validity/multitask/multitask_2d_gain.png" 
+               alt="Multitask Improvement by Roundtable Policy" 
+               style="width: 100%; display: block; margin: 0 auto;">
+          <figcaption class="has-text-centered" style="margin-top: 8px; font-size: 14px;">
+            Multitask Percentage Improvement by <b>Roundtable Policy</b>.
+          </figcaption>
+        </figure>
+      </div>
+      <div class="column is-half has-text-centered">
+        <figure class="image" style="max-width: 100%;">
+          <img src="./figures/gain_validity/singletask/singletask_2d_gain.png" 
+               alt="Singletask 2D Gain" 
+               style="width: 100%; display: block; margin: 0 auto;">
+          <figcaption class="has-text-centered" style="margin-top: 8px; font-size: 14px;">
+            Singletask Percentage Improvement by <b>Roundtable Policy</b>.
+          </figcaption>
+        </figure>
+      </div>
     </div>
+
   </div>
 </section>
 
-  
+
+<!-- Toggle bar placeholder -->
+<div id="togglebar-placeholder"></div>
+<script>
+  fetch("static/togglebar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("togglebar-placeholder").innerHTML = data;
+    });
+</script>
+
+<!-- Citation -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{yao2025roundtable,
-  author = {Yu Yao and Jiayi Dong and Ju Li and Yang Yang and Yilun Du},
-  title = {Roundtabe Policy: Improving Scientific Reasoning and Narratives through Confidence Weighted Consensus of LLMs},
-  journal = {arXiv preprint arXiv:2502.xxxxx},
-  year = {2025}
+  author    = {Yu Yao* and Jiayi Dong* and Ju Li† and Yang Yang† and Yilun Du†},
+  title     = {Roundtable Policy: Improving Scientific Reasoning and Narratives through Confidence Weighted Consensus of LLMs},
+  journal   = {arXiv preprint arXiv:2509.xxxxx},
+  year      = {2025},
+  note      = {* Equal contribution, † Equal advising}
 }</code></pre>
   </div>
 </section>
 
+<!-- Footer -->
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
@@ -209,13 +194,10 @@
           Creative Commons Attribution-ShareAlike 4.0 International License
         </a>. 
       </p>
-
     </div>
   </div>
 </footer>
 
-<!-- 确保 FontAwesome 和 Academicons 正确加载 -->
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
-
 </body>
 </html>
