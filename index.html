@@ -69,8 +69,24 @@
     });
 </script>
 
+<!-- Demo Video Section -->
+<section class="section" id="demo-video">
+  <div class="container is-max-desktop">
+
+    <div class="has-text-centered">
+      <video autoplay muted loop controls style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        <source src="./figures/demo_web.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+  </div>
+</section>
+
+
+
 <!-- Abstract -->
-<section class="section">
+<section class="section" id="abstract">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -94,16 +110,13 @@
 </section>
 
 
-<section class="section" id="figures">
+<section class="section" id="general pipeline">
   <div class="container is-max-desktop">
-    <h2 class="title has-text-centered">Roundtable</h2>
+    <h2 class="title has-text-centered">Pipeline of Roundtable Policy</h2>
     <figure class="image" style="margin: 0 auto; max-width: 900px; margin-bottom: 20px;">
-      <img src="./figures/general_demo.png" 
+      <img src="./figures/new_pipeline_with_eg.svg" 
            alt="Cover Roundtable" 
            style="width: 100%; display: block; margin: 0 auto;">
-      <h2 class="subtitle has-text-centered">
-        General pipeline of <span class="dnerf">Roundtable Policy</span>.
-      </h2>
     </figure>
   </div>
 </section>
@@ -151,9 +164,42 @@
         </figure>
       </div>
     </div>
+<!-- 文字总结 -->
+<div class="content has-text-justified" style="margin-top: 30px;">
+  <p>
+    We compare <b>Roundtable Policy (RT)</b> with individual LLM baselines in both 
+    <i>MultiTask</i> and <i>SingleTask</i> settings. 
+    Overall results are summarized in the benchmark table, with relative gains 
+    shown in the improvement figures.
+  </p>
+
+  <p>
+    In <i>MultiTask</i>, RT achieves the highest average score on 
+    <b>8 out of 9</b> tasks and an average lift of <b>+13.01%</b>. 
+    The only exception is <b>Task&nbsp;009: Biology</b>, where 
+    Qwen-plus (Player&nbsp;008, 51.64&nbsp;±&nbsp;6.57) and 
+    GPT-4o (Player&nbsp;001, 51.53&nbsp;±&nbsp;6.64) slightly outperform 
+    RT (47.55&nbsp;±&nbsp;7.02).  
+    On reasoning-intensive tasks, RT delivers large improvements, such as 
+    <b>+90.48%</b> over Gemini-2.0 (Player&nbsp;009, Task&nbsp;007: Math) and 
+    <b>+52.07%</b> over Claude-3.7 Sonnet (Player&nbsp;006, Task&nbsp;006: Semiconductor).
+  </p>
+
+  <p>
+    In <i>SingleTask</i> (scientific proposal writing), RT achieves the best scores 
+    in <b>all nine</b> rubric dimensions—Creativity, Scientific Rigor, and 
+    Logical Coherence across <i>Background</i>, <i>Methodology</i>, and <i>Impact</i>. 
+    Average performance reaches <b>90–91%</b> with narrow confidence intervals. 
+    The largest gains appear in <i>Impact–Scientific Rigor</i>, confirming that RT 
+    consistently elevates weaker models (e.g., GPT-4o-mini, Player&nbsp;006) while 
+    maintaining or improving strong ones (e.g., Claude-3.7 Sonnet, Player&nbsp;008).  
+    Overall, RT delivers a <b>+11.04%</b> average lift.
+  </p>
+</div>
 
   </div>
 </section>
+
 
 
 <!-- Toggle bar placeholder -->
@@ -165,6 +211,72 @@
       document.getElementById("togglebar-placeholder").innerHTML = data;
     });
 </script>
+<!-- Ablation Results -->
+<section class="section" id="ablation">
+  <div class="container is-max-desktop">
+    <h2 class="title has-text-centered">Ablation Results</h2>
+
+    <!-- Ablation summary text -->
+    <div class="content has-text-justified" style="margin-top: 20px;">
+      <p>
+        To better understand the contributions of our design choices, we conduct two ablation studies. 
+        Both highlight how <b>Roundtable Policy (RT)</b> advances scientific reasoning in structured benchmarks 
+        and improves narrative quality in open-ended writing.
+      </p>
+
+      <p>
+        <b>Policy Ablation.</b>  
+        We compare RT with a <i>Best-Single-Model Policy (BSMP)</i>, which always selects the response 
+        from the single model with the highest confidence weight instead of fusing multiple players. 
+        Results show that RT consistently outperforms BSMP: in <i>MultiTask</i>, RT achieves higher accuracy 
+        on 8 of 9 scientific tasks (especially in reasoning-heavy domains such as mathematics and mechanics), 
+        while Task&nbsp;009: Biology remains challenging for both. 
+        In <i>SingleTask</i> (proposal writing), RT dominates all nine rubric dimensions, yielding both higher 
+        average scores and lower variance. These results confirm that consensus fusion—integrating diverse 
+        perspectives—is essential, whereas relying on a single “winner” is insufficient.
+      </p>
+
+      <p>
+        <b>Rounds Ablation.</b>  
+        We also study the effect of training rounds used to construct the confidence-weight table. 
+        In <i>MultiTask</i>, performance improves steadily with more rounds, stabilizing near 1000 rounds. 
+        In contrast, <i>SingleTask</i> converges quickly: fewer than 100 rounds already surpass baselines, 
+        and additional rounds bring diminishing returns. This shows that heterogeneous benchmarks require 
+        long-run calibration of model reliability, while rubric-based proposal writing stabilizes much faster.
+      </p>
+
+      <p>
+        <b>Key Insight:</b> Weighted consensus is fundamentally more effective than selecting the best 
+        single model, and the stability of the confidence-weight table depends on task structure. 
+        Together, these findings underscore the importance of consensus-driven fusion for advancing both 
+        scientific reasoning and scientific narrative.
+      </p>
+    </div>
+
+    <!-- 第一张图 -->
+    <figure class="image" style="margin: 0 auto; max-width: 800px; margin-bottom: 20px;">
+      <img src="./figures/ablation/rounds_ablation.png" 
+           alt="Rounds Ablation Results" 
+           style="width: 100%; display: block; margin: 0 auto;">
+      <figcaption class="has-text-centered" style="margin-top: 8px; font-size: 14px;">
+        Rounds Ablation Results
+      </figcaption>
+    </figure>
+
+    <!-- 第二张图 -->
+    <figure class="image" style="margin: 0 auto; max-width: 800px; margin-bottom: 20px;">
+      <img src="./figures/ablation/policy_ablation.png" 
+           alt="Policy Ablation Results" 
+           style="width: 100%; display: block; margin: 0 auto;">
+      <figcaption class="has-text-centered" style="margin-top: 8px; font-size: 14px;">
+        Policy Ablation Results
+      </figcaption>
+    </figure>
+
+  </div>
+</section>
+
+
 
 <!-- Citation -->
 <section class="section" id="BibTeX">
