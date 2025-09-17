@@ -93,15 +93,11 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present <b>Roundtable Policy</b>, a prompting framework designed to enhance both scientific reasoning and research narratives by capturing consensus among multiple LLM agents. 
-            Our approach is evaluated in two complementary settings: 
-            (1) <i>MultiTask</i>, where heterogeneous scientific questions across domains such as geoscience, biology, mathematics, and materials science are posed simultaneously to emulate the complexity of real-world reasoning; and 
-            (2) <i>SingleTask</i>, where LLMs are required to draft structured scientific proposals given specifications, testing their ability to construct coherent narratives. 
-            To assess performance, we introduce an ensemble-based grading system—the <i>AI Committee</i>—which assigns rubric-specific scores from multiple perspectives. 
-            Central to our method is the <i>confidence-weight table</i>, a matrix that aggregates the committee’s judgments into trust scores for each model. 
-            During inference, this table guides a <i>Fusion Agent</i> that synthesizes player responses into a weighted consensus. 
-            Experiments show that <b>Roundtable Policy</b> improves factual reliability, reasoning consistency, and narrative coherence compared to single-model or naive selection baselines. 
-            Notably, the framework is orthogonal to existing advances such as retrieval augmentation, debate, or prompt engineering, and can be seamlessly applied to any multi-LLM setting. 
+            Large language models (LLMs) have demonstrated remarkable capabilities not only in language generation but also in advancing scientific discovery. 
+            A growing body of work has explored ways to improve their reasoning, from self-consistency and chain-of-thought to multi-agent debate. 
+            Inspired by the dynamics of scientific committees and The Society of Mind, we introduce <b>Roundtable Policy</b>, a complementary inference-time reasoning framework that performs inference through the weighted consensus of multiple LLMs. 
+            Our findings indicate that this approach significantly enhances reasoning in complex heterogeneous scientific tasks and improves scientific narratives in terms of creativity, rigor, and logical coherence, 
+            while reducing hallucinations that single models are prone to. Our approach emphasizes structured and interpretable consensus rather than opaque convergence, while requires only black-box access and uniform procedures, making it broadly applicable to multi-LLM reasoning.
           </p>
         </div>
       </div>
@@ -110,16 +106,68 @@
 </section>
 
 
-<section class="section" id="general pipeline">
+<!-- Image Switcher Section -->
+<section class="section" id="image-switcher">
   <div class="container is-max-desktop">
-    <h2 class="title has-text-centered">Pipeline of Roundtable Policy</h2>
-    <figure class="image" style="margin: 0 auto; max-width: 900px; margin-bottom: 20px;">
-      <img src="./figures/new_pipeline_with_eg.svg" 
-           alt="Cover Roundtable" 
-           style="width: 100%; display: block; margin: 0 auto;">
-    </figure>
+    <h2 class="title has-text-centered">Pipeline Illustration</h2>
+
+    <div style="position: relative; max-width: 800px; margin: 0 auto;">
+      <!-- 图片容器 -->
+      <img id="switcher-image" 
+           src="./figures/new_pipeline_with_eg.svg" 
+           alt="Demo Image" 
+           style="width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+
+      <!-- 左按钮 -->
+      <button onclick="prevImage()" 
+              style="position: absolute; top: 50%; left: 10px; transform: translateY(-50%);
+                     background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 14px;
+                     border-radius: 50%; cursor: pointer; font-size: 18px;">
+        &#10094;
+      </button>
+
+      <!-- 右按钮 -->
+      <button onclick="nextImage()" 
+              style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+                     background: rgba(0,0,0,0.5); color: white; border: none; padding: 10px 14px;
+                     border-radius: 50%; cursor: pointer; font-size: 18px;">
+        &#10095;
+      </button>
+    </div>
   </div>
 </section>
+
+<script>
+  const images = [
+    "./figures/new_pipeline_with_eg.svg",
+    "./figures/detailed_demo/singletask_demo.png",
+    "./figures/detailed_demo/multitask_demo.png"
+  ];
+
+  let currentIndex = 0;
+  const switcherImage = document.getElementById("switcher-image");
+
+  function showImage(index) {
+    currentIndex = (index + images.length) % images.length; // 循环
+    switcherImage.src = images[currentIndex];
+  }
+
+  function prevImage() {
+    showImage(currentIndex - 1);
+  }
+
+  function nextImage() {
+    showImage(currentIndex + 1);
+  }
+
+  // 自动切换
+  setInterval(() => {
+    nextImage();
+  }, 9000);
+</script>
+
+
+
 <!-- Benchmark -->
 <section class="section" id="benchmark">
   <div class="container is-max-desktop">
