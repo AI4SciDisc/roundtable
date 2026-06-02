@@ -1,0 +1,61 @@
+# Example Roundtable Policy config with heterogeneous providers.
+#
+# One player/grader per provider to show the multi-API surface. Providers:
+#   openai | openai_compatible | anthropic | google (alias: gemini)
+# Use openai_compatible + base_url for vLLM / Together / Groq / DeepSeek / Ollama.
+# Edit every prompt below — none are supplied by the framework.
+
+dimensions:
+  - default
+
+players:
+  - agent_id: player_openai
+    provider: openai
+    model: gpt-4o
+    system_prompt: "REPLACE ME"
+    prompt_template: "{query}"
+
+  - agent_id: player_claude
+    provider: anthropic
+    model: claude-sonnet-4-6
+    system_prompt: "REPLACE ME"
+    prompt_template: "{query}"
+
+  - agent_id: player_gemini
+    provider: google
+    model: gemini-2.5-pro
+    system_prompt: "REPLACE ME"
+    prompt_template: "{query}"
+
+  - agent_id: player_local
+    provider: openai_compatible
+    model: my-local-model
+    base_url: http://localhost:8000/v1
+    api_key: not-needed
+    system_prompt: "REPLACE ME"
+    prompt_template: "{query}"
+
+graders:
+  - grader_id: grader_claude
+    provider: anthropic
+    model: claude-sonnet-4-6
+    system_prompt: "REPLACE ME"
+    prompt_template: |
+      {query}
+
+      {response}
+
+      Score: <integer -100..100>
+      Uncertainty: <integer 0..50>
+      Rationale: <one sentence>
+
+aggregator:
+  provider: anthropic
+  model: claude-sonnet-4-6
+  system_prompt: "REPLACE ME"
+  prompt_template: |
+    {query}
+
+    {responses}
+
+    {confidence}

@@ -1,0 +1,72 @@
+# Example Roundtable Policy config (single provider: OpenAI).
+#
+# Prompts are hyperparameters: every system_prompt / prompt_template below is
+# yours to edit. The framework ships none of its own. Template placeholders:
+#   players     {query} {domain}
+#   graders     {query} {response} {reference} {dimensions}
+#   aggregator  {query} {responses} {confidence}
+
+# Confidence-weight table columns (any labels you like; one "default" works too).
+dimensions:
+  - reasoning
+  - factuality
+
+players:
+  - agent_id: player_a
+    provider: openai
+    model: gpt-4o
+    temperature: 0.7
+    system_prompt: "REPLACE ME — the player's system prompt."
+    prompt_template: |
+      {query}
+
+  - agent_id: player_b
+    provider: openai
+    model: gpt-4o-mini
+    temperature: 0.9
+    system_prompt: "REPLACE ME — a differently-primed player."
+    prompt_template: |
+      {query}
+
+graders:
+  - grader_id: grader_a
+    provider: openai
+    model: gpt-4o
+    temperature: 0.3
+    system_prompt: "REPLACE ME — the grader's system prompt / rubric."
+    # The default parser reads these exact fields; change the parser to use
+    # a different format.
+    prompt_template: |
+      Question:
+      {query}
+
+      Response:
+      {response}
+
+      Reference (may be empty):
+      {reference}
+
+      Reply with exactly:
+      Score: <integer -100..100>
+      Uncertainty: <integer 0..50>
+      Rationale: <one sentence>
+
+aggregator:
+  provider: openai
+  model: gpt-4o
+  temperature: 0.5
+  system_prompt: "REPLACE ME — the aggregator's system prompt."
+  prompt_template: |
+    Question:
+    {query}
+
+    Candidate answers:
+    {responses}
+
+    Per-agent reliability so far:
+    {confidence}
+
+# Optional knobs:
+# ema_decay: 0.9                 # default null = 1/t schedule from Algorithm 1
+# inference_mode: false          # true = skip grading, reuse a saved table
+# confidence_table_path: table.json

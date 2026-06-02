@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "roundtable-policy"
+version = "0.1.0"
+description = "Roundtable Policy: Confidence-Weighted Consensus Aggregation for Multi-Agent Reasoning"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    {name = "Yu Yao"},
+    {name = "Jiayi Dong"},
+    {name = "Yang Yang"},
+    {name = "Ju Li"},
+    {name = "Yilun Du"},
+]
+dependencies = [
+    "numpy>=1.24",
+    "pyyaml>=6.0",
+    "tqdm>=4.60",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+anthropic = ["anthropic>=0.30"]
+google = ["google-genai>=0.3"]
+all = ["openai>=1.0", "anthropic>=0.30", "google-genai>=0.3"]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+]
+
+[project.scripts]
+roundtable = "roundtable.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["roundtable*"]
